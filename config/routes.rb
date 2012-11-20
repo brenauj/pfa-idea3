@@ -1,4 +1,33 @@
 Idea3::Application.routes.draw do
+  get "ideas/create"
+  match "ideas/:id/view" => 'ideas#view'
+  match "ideas/:id/delete" => 'ideas#delete'
+  match "ideas/:id/edit" => 'ideas#edit'
+
+  post "ideas/create"
+  post "ideas/delete"
+  post "ideas/edit"
+
+  get "boxes/create"
+  match "boxes/:id/edit" => 'boxes#edit'
+  get "boxes/list"
+  match "boxes/:id/view" => 'boxes#view'
+  match "boxes/:id/delete" => 'boxes#delete'
+
+  post "boxes/create"
+  post "boxes/edit"
+  post "boxes/delete"
+
+  get "users/register"
+  match "users/:id/view" => 'users#view'
+  match "users/:id/edit" => 'users#edit'
+  match "users/:id/delete" => 'users#exit'
+  get "users/list"
+
+  post "users/register"
+  post "users/edit"
+  post "users/delete"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
