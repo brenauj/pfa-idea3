@@ -1,2 +1,5 @@
 %h1 Ideas#create
-%p Find me in app/views/ideas/create.html.haml
+= simple_form_for :idea do |f|
+  = f.input :name
+  = f.input :description
+  = f.button :submit

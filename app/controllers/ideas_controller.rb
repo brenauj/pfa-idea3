@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   def create
+    @idea = Idea.new
   end
 
   def view
