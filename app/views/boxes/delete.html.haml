@@ -1,2 +1,6 @@
-%h1 Boxes#delete
-%p Find me in app/views/boxes/delete.html.haml
+%h2 Delete box : "#{@box.name}"
+.alert.alert-error
+  %h4 Attention !
+  This will delete the box "#{@box.name}" and all its ideas.
+= button_to "Confirm", { :action => :delete, :id => @box, :confirm => true }, :class => "btn btn-danger"
+= button_to "Cancel", { :action => :view, :id => @box }, :class => "btn"

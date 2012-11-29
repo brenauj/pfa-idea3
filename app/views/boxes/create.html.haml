@@ -1,2 +1,6 @@
-%h1 Boxes#create
-%p Find me in app/views/boxes/create.html.haml
+%h2= "Create a new box"
+
+= simple_form_for :box do |f|
+  = f.input :name
+  = f.input :description
+  = f.button :submit

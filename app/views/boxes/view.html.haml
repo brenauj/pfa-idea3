@@ -1,2 +1,18 @@
-%h1 Boxes#view
-%p Find me in app/views/boxes/view.html.haml
+%h2= "#{@box.name}"
+%p #{@box.description}
+.buttons
+  = link_to "Edit", { :action => :edit, :id => @box }, :class => "btn"
+  = button_to "Delete", { :action => :delete, :id => @box }, :class => "btn btn-danger"
+%p
+  - unless @box.user.nil?
+    %em box created by #{@box.user.name} on #{@box.created_at.asctime}
+  - else
+    %em box created by Unknown on #{@box.created_at.asctime}
+- if @box.ideas.size > 0
+  %p
+    - @box.ideas.each do |idea|
+      %blockquote
+        %p #{idea.description}
+        %small Posted by #{User.find(idea.user_id).name} on #{idea.created_at.asctime}
+- else
+  %i There is no idea in this box.
