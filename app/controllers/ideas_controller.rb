@@ -6,10 +6,9 @@ class IdeasController < ApplicationController
       @idea = Idea.new params[:idea]
       if @idea.save
         redirect_to :action => :view, :id => @idea
-      else
-        redirect_to :action => :edit, :id => @idea
       end
     end
+    # error
   end
 
   def view
@@ -27,10 +26,6 @@ class IdeasController < ApplicationController
   def edit
     @idea = Idea.find(params[:id])
     if request.post?
-
-      if params[:idea][:name] == ""
-        params[:idea].delete(:name)
-      end
 
       if @idea.update_attributes(params[:idea])
         redirect_to :action => :view, :id => @idea
