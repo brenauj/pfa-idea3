@@ -1,2 +1,13 @@
-%h1 Users#register
-%p Find me in app/views/users/register.html.haml
+%h2 Register
+- if @user.errors.count > 0
+  .alert
+    Oops ! It seems that there are some error. Please try again after fixing them ?
+- else
+  .alert.alert-info
+    Welcome to Idea
+    %sup 3
+    \! We're glad to have you here. Just fill up this little form to join us !
+= simple_form_for :user do |f|
+  = f.input :name
+  = f.input :password
+  = f.submit

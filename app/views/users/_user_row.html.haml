@@ -1,0 +1,6 @@
+%tr
+  %td= user.name
+  %td= User::Roles[user.role]
+  %td
+    = link_to "View", { :action => :view, :id => user }, :class => "btn"
+    = link_to "Edit", { :action => :edit, :id => user }, :class => "btn"

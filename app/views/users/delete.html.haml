@@ -1,2 +1,8 @@
-%h1 Users#delete
-%p Find me in app/views/users/delete.html.haml
+%h2 User deletion
+.alert.alert-error
+  %h4 Attention !
+  This will delete the user
+  %b= @user.name
+  \! This action cannot be undone.
+= button_to "Confirm", { :action => :delete, :id => @user, :confirm => true }, :class => "btn btn-danger"
+= button_to "Cancel", { :action => :view, :id => @user }, :class => "btn"
