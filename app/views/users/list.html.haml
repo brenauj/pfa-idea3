@@ -1,2 +1,7 @@
-%h1 Users#list
-%p Find me in app/views/users/list.html.haml
+%h2 User list
+%table.table
+  %tr
+    %th Name
+    %th Role
+    %th Actions
+  = render :partial => "user_row", :collection => @users, :as => :user
