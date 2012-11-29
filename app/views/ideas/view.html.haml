@@ -1,2 +1,4 @@
-%h1 Ideas#view
-%p Find me in app/views/ideas/view.html.haml
+%h2= @idea.name
+%p= @idea.description
+= link_to 'Edit', :action => :edit, :id => @idea
+= link_to 'Delete', :action => :delete, :id => @idea
