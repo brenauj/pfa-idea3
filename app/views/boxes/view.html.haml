@@ -11,14 +11,15 @@
 .buttons
   = link_to "Create Idea", { :action => :create, :controller => :ideas , :box_id => @box }, :class => "btn" 
 - if @box.ideas.size > 0
-  %p
+  %dl
     - @box.ideas.each do |idea|
-      %blockquote
-        %p #{idea.description}
+      %dt= link_to idea.name, :controller => :ideas, :action => :view, :id => idea
+      %dd
+        = idea.description
         - unless idea.user.nil?
-          %small Posted by #{User.find(idea.user).name} on #{idea.created_at.asctime}
+          %footer Posted by #{User.find(idea.user).name} on #{idea.created_at.asctime}
         - else
-          %small Posted by Unknown on #{idea.created_at.asctime}
+          %footer Posted by Unknown on #{idea.created_at.asctime}
         .buttons
           = link_to "Edit", { :action => :edit, :controller => :ideas, :id => idea }, :class => "btn"
           = button_to "Delete", { :action => :delete, :controller => :ideas, :id => idea }, :class => "btn btn-danger"
