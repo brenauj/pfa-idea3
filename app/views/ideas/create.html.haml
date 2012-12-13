@@ -2,5 +2,6 @@
 = simple_form_for :idea do |f|
   = f.input :name
   = f.input :description
-  = f.input :box_id, :as => :hidden, :input_html => { :value => params[:box_id] }
+  = f.input :box_id, :as => :hidden, :input_html => { :value => params[:box_id] || params[:idea][:box_id]}
+  = f.collection_radio_buttons :status, [[Idea::OFFICIAL, 'official'] ,[Idea::NONE, 'none']], :first, :last
   = f.button :submit
