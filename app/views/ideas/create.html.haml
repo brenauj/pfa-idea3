@@ -2,4 +2,5 @@
 = simple_form_for :idea do |f|
   = f.input :name
   = f.input :description
+  = f.input :box_id, :as => :hidden, :input_html => { :value => params[:box_id] }
   = f.button :submit
