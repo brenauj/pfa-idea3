@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
     elsif request.post?
       @idea = Idea.new params[:idea]
       if @idea.save
-        redirect_to :action => :view, :controller => "boxes", :id => @idea.box_id
+        redirect_to :action => :view, :controller => :boxes, :id => @idea.box_id
       end
     end
     # error
