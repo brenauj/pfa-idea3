@@ -19,9 +19,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if request.post?
-      if params[:user][:password] == ""
-        params[:user].delete(:password)
-      end
+      # if params[:user][:password].nil? or params[:user][:password] == ""
+      #   params[:user].delete(:password)
+      # end
 
       if @user.update_attributes(params[:user])
         redirect_to :action => :view, :id => @user
@@ -40,5 +40,19 @@ class UsersController < ApplicationController
 
   def list
     @users = User.find(:all)
+  end
+
+  def password
+    if request.post?
+      @user = User.find(params[:user][:id])
+      params[:user].delete(:id)
+      @user.update_attributes(params[:user])
+
+      if @user.save
+        redirect_to :action => :view, :id => @user
+      end
+    else
+      @user = User.find(params[:id])
+    end
   end
 end

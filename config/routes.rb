@@ -23,10 +23,12 @@ Idea3::Application.routes.draw do
   match "users/:id/edit" => 'users#edit'
   match "users/:id/delete" => 'users#exit'
   get "users/list"
+  match "users/:id/password" => "users#password"
 
   post "users/register"
   post "users/edit"
   post "users/delete"
+  post "users/password"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -3,4 +3,5 @@
   = User::Roles[@user.role]
 .buttons
   = link_to "Edit", { :action => :edit, :id => @user }, :class => "btn"
+  = link_to "Change password", { :action => :password, :id => @user }, :class => "btn"
   = button_to "Delete", { :action => :delete, :id => @user }, :class => "btn btn-danger"

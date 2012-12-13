@@ -7,12 +7,15 @@ class User < ActiveRecord::Base
             "Moderator",
             "Adminitrator" ]
 
+  has_secure_password
+
   has_many :boxes
   has_many :ideas
 
-  attr_accessible :name, :password, :role
+  attr_accessible :name, :password, :password_confirmation, :role
 
-  validates_presence_of :name, :password
+  validates_presence_of :name
+  validates_presence_of :password, :on => :creation
   validates_uniqueness_of :name
   validates_inclusion_of :role, :in => [ User, Moderator, Administrator ]
   validates_format_of :name, :with => /^[a-zA-Z0-9_-]+$/

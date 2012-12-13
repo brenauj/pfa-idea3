@@ -2,6 +2,5 @@
 - @user.errors.each do |field, error|
   %p= field.to_s + " " + error
 = simple_form_for :user do |f|
-  = f.input :name
-  = f.input :password
+  = f.input :name, :disabled => true
   = f.button :submit
