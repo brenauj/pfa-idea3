@@ -28,7 +28,7 @@ class IdeasController < ApplicationController
     if request.post?
 
       if @idea.update_attributes(params[:idea])
-        redirect_to :action => :view, :id => @idea
+        redirect_to :controller => :boxes, :action => :view, :id => @idea.box
       end
 
     end

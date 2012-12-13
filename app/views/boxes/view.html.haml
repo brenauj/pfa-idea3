@@ -2,14 +2,14 @@
 %p #{@box.description}
 .buttons
   = link_to "Edit", { :action => :edit, :id => @box }, :class => "btn"
-  = button_to "Delete", { :action => :delete, :id => @box , :box_id => @box.id}, :class => "btn btn-danger"
+  = button_to "Delete", { :action => :delete, :id => @box , :box_id => @box}, :class => "btn btn-danger"
 %p
   - unless @box.user.nil?
     %em box created by #{@box.user.name} on #{@box.created_at.asctime}
   - else
     %em box created by Unknown on #{@box.created_at.asctime}
 .buttons
-  = link_to "Create Idea", { :action => :create, :controller => "ideas" , :box_id => @box.id }, :class => "btn" 
+  = link_to "Create Idea", { :action => :create, :controller => :ideas , :box_id => @box }, :class => "btn" 
 - if @box.ideas.size > 0
   %p
     - @box.ideas.each do |idea|
@@ -20,7 +20,7 @@
         - else
           %small Posted by Unknown on #{idea.created_at.asctime}
         .buttons
-          = link_to "Edit", { :action => :edit, :controller => "ideas", :id => idea }, :class => "btn"
-          = button_to "Delete", { :action => :delete, :controller => "ideas", :id => idea }, :class => "btn btn-danger"
+          = link_to "Edit", { :action => :edit, :controller => :ideas, :id => idea }, :class => "btn"
+          = button_to "Delete", { :action => :delete, :controller => :ideas, :id => idea }, :class => "btn btn-danger"
 - else
   %i There is no idea in this box.
