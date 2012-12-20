@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   Roles = [ "User",
             "Moderator",
-            "Adminitrator" ]
+            "Administrator" ]
 
   has_secure_password
 
@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   validates_inclusion_of :role, :in => [ User, Moderator, Administrator ]
   validates_format_of :name, :with => /^[a-zA-Z0-9_-]+$/
   validates_length_of :name, :minimum => 6
+
+  def self.authenticate(login, passwd)
+    find_by_name(login).try(:authenticate, passwd)
+  end
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_login, :only => [ :edit, :delete, :password ]
+
   def register
     if request.post?
       @user = User.new(params[:user])
@@ -54,5 +56,28 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
     end
+  end
+
+  def login
+    if session[:user]
+      add_warning "Already logged in."
+      redirect_to :action => :view, :id => session[:user]
+    end
+
+    if request.post?
+      user = User.authenticate(params[:user][:name], params[:user][:password])
+
+      if user
+        session[:user] = user
+        redirect_to :action => :view, :id => user
+      else
+        add_error "Unable to login"
+      end
+    end
+  end
+
+  def logout
+    session[:user] = nil
+    redirect_to :action => :login
   end
 end
