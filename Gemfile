@@ -17,7 +17,8 @@ group :assets do
   gem 'haml-rails',     '~> 0.3.5'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
