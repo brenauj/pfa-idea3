@@ -1,7 +1,11 @@
 class BoxesController < ApplicationController
+
+include ApplicationHelper
+
   def create
     if request.post?
       @box = Box.new(params[:box])
+      @box.user = get_user
       if @box.save
         redirect_to :action => :view, :id => @box
       end
@@ -9,7 +13,7 @@ class BoxesController < ApplicationController
       @box = Box.new
     end
   end
-  
+
   def edit
     @box = Box.find(params[:id])
 
