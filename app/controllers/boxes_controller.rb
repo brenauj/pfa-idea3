@@ -1,6 +1,7 @@
 class BoxesController < ApplicationController
 
 include ApplicationHelper
+before_filter :require_login, :except => [:create, :list, :view]
 
   def create
     if request.post?
@@ -11,6 +12,17 @@ include ApplicationHelper
       end
     else
       @box = Box.new
+    end
+  end
+
+  def require_login
+    user = get_user
+    if user == nil
+      flash[:error] = ["You must be logged in to access this section"]
+      redirect_to :controller => :users, :action => :login
+    elsif user != Box.find(params[:id]).user && user.role != 1 && user.role != 2
+      flash[:error] = ["You don't have permission to edit or delete this box"]
+      redirect_to :action => :view, :id => Box.find(params[:id])
     end
   end
 
