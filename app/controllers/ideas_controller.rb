@@ -2,8 +2,12 @@ class IdeasController < ApplicationController
   def create
     if request.get?
       @idea = Idea.new
+      @idea.status = Idea::NONE
     elsif request.post?
       @idea = Idea.new params[:idea]
+      if params[:idea][:status] == nil
+        @idea.status = Idea::NONE
+      end
       if @idea.save
         redirect_to :action => :view, :controller => :boxes, :id => @idea.box_id
       end
