@@ -13,7 +13,7 @@
         %tr
           %td= box.id
           %td
-            #{ link_to box.name, "#{box.id}/view" }
+            = link_to box.name, :action => :view, :id => box
           - unless box.user.nil?
             %td= box.user.name
           - else

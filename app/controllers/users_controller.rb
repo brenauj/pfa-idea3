@@ -77,7 +77,9 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session[:user] = nil
-    redirect_to :action => :login
+    if request.post?
+      session[:user] = nil
+      redirect_to :action => :login
+    end
   end
 end
