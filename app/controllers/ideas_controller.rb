@@ -1,4 +1,17 @@
 class IdeasController < ApplicationController
+  before_filter :require_login
+  before_filter :check_user, :only => [ :delete, :edit ]
+
+  include ApplicationHelper
+
+  def check_user
+    user = get_user
+    if (user.role == User::User) and (user != Idea.find(params[:id]).user)
+      add_error("You don't have the rights for that")
+      redirect_to :action => :view, :id => params[:id]
+    end
+  end
+
   def create
     if request.get?
       @idea = Idea.new
@@ -8,11 +21,13 @@ class IdeasController < ApplicationController
       if params[:idea][:status] == nil
         @idea.status = Idea::NONE
       end
+      @idea.user = get_user
       if @idea.save
         redirect_to :action => :view, :controller => :boxes, :id => @idea.box_id
+      else
+        add_error @idea.errors.messages.to_s
       end
     end
-    # error
   end
 
   def view

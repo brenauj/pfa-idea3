@@ -49,6 +49,10 @@ before_filter :require_login, :except => [:create, :list, :view]
 
     if params[:confirm]
       @box.delete
+      ideas = Idea.find_all_by_box_id params[:id]
+      ideas.each do |i|
+        i.delete
+      end
       redirect_to :action => :list
     end
   end
