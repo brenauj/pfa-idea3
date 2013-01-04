@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, :except => [ :view ]
   before_filter :check_user, :only => [ :delete, :edit ]
 
   include ApplicationHelper
