@@ -16,7 +16,8 @@ before_filter :require_permission, :except => [:create, :list, :view]
     end
   end
 
-  def require_perission
+  def require_permission
+    user = session[:user]
     if user != Box.find(params[:id]).user && user.role != 1 && user.role != 2
       flash[:error] = ["You don't have permission to edit or delete this box"]
       redirect_to :action => :view, :id => Box.find(params[:id])
