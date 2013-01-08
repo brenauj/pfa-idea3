@@ -36,6 +36,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if params[:confirm]
+      if @user == session[:user]
+        session[:user] = nil
+      end
+
       @user.delete
       redirect_to :action => :list
     end

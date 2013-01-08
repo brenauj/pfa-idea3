@@ -1,6 +1,7 @@
 %h2= @user.name
 .role
   = User::Roles[@user.role]
+%h3 Boxes
 .buttons
   = link_to "Edit", { :action => :edit, :id => @user }, :class => "btn"
   = link_to "Change password", { :action => :password, :id => @user }, :class => "btn"
