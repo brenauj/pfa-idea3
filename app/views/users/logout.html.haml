@@ -1,0 +1,4 @@
+%h2 Logout
+%p Are you sure you want to logout ?
+= link_to "Cancel", { :action => :view, :id => get_user }, :class => "btn"
+= button_to "Disconnect", { :action => :logout }, :class => "btn btn-primary"

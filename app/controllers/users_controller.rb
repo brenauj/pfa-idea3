@@ -6,6 +6,7 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       @user.role = User::User
       if @user.save
+        session[:user] = @user
         redirect_to :action => :view, :id => @user
       end
     else
@@ -35,6 +36,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if params[:confirm]
+      if @user == session[:user]
+        session[:user] = nil
+      end
+
       @user.delete
       redirect_to :action => :list
     end
@@ -77,7 +82,9 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session[:user] = nil
-    redirect_to :action => :login
+    if request.post?
+      session[:user] = nil
+      redirect_to :action => :login
+    end
   end
 end

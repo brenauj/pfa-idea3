@@ -1,0 +1,10 @@
+%tr
+  %td
+    = link_to box.name, :controller => :boxes, :action => :view, :id => box
+  - unless box.user.nil?
+    %td= box.user.name
+  - else
+    %td
+      %i no user
+  %td= box.description
+  %td= box.ideas.count

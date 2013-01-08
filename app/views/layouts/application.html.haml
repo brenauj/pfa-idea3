@@ -6,16 +6,28 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    - if get_user
-      = "Logged in as #{get_user.name}"
-      = button_to "Logout", :controller => :users, :action => :logout
-    - else
-      = "Not logged in"
-    - if flash[:error]
-      - flash[:error].each do |err|
-        .alert.alert-error= err
-    - if flash[:warning]
-      - flash[:warning].each do |warn|
-        .alert= warn
-    %hr
-    =yield
+    .navbar.navbar-static-top
+      .navbar-inner
+        = link_to "/", :class => "brand" do
+          Idea
+          %sup 3
+        %ul.nav
+          %li= link_to "Boxes", :controller => :boxes, :action => :list
+        %ul.nav.pull-right
+          - if get_user
+            %li= link_to get_user.name, :controller => :users, :action => :view, :id => get_user
+            %li= link_to "Logout", :controller => :users, :action => :logout
+          - else
+            %li= link_to "Login", :controller => :users, :action => :login
+            %li= link_to "Register", :controller => :users, :action => :register
+    .container
+      %h1
+        Idea
+        %sup 3
+      - if flash[:error]
+        - flash[:error].each do |err|
+          .alert.alert-error= err
+      - if flash[:warning]
+        - flash[:warning].each do |warn|
+          .alert= warn
+      =yield
