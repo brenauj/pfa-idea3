@@ -2,6 +2,13 @@
 .role
   = User::Roles[@user.role]
 %h3 Boxes
+%table.table
+  %tr
+    %th Name
+    %th Owner
+    %th Description
+    %th Number of ideas
+  = render :partial => 'boxes/box_row', :collection => @user.boxes, :as => :box
 .buttons
   = link_to "Edit", { :action => :edit, :id => @user }, :class => "btn"
   = link_to "Change password", { :action => :password, :id => @user }, :class => "btn"
