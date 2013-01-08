@@ -1,7 +1,7 @@
 class BoxesController < ApplicationController
 
 include ApplicationHelper
-before_filter :require_login, :except => [:create, :list, :view]
+before_filter :require_login, :except => [:list, :view]
 
   def create
     if request.post?
