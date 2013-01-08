@@ -4,14 +4,13 @@
 - if @boxes != nil && @boxes.count > 0
   %table.table{:class => "table-hover"}
     %thead
-      %th Id
       %th Name
       %th Owner
       %th Description
+      %th Number of ideas
     %tbody
       - @boxes.each do |box|
         %tr
-          %td= box.id
           %td
             = link_to box.name, :action => :view, :id => box
           - unless box.user.nil?
@@ -20,5 +19,6 @@
             %td
               %i no user
           %td= box.description
+          %td= box.ideas.count
 - else
   %i There is no box for the moment.

@@ -1,4 +1,4 @@
-%h1 Ideas#delete
+%h2 Delete an idea
 %p= "You are about to delete the idea \"#{@idea.name}\", are you sure ?"
 = button_to 'delete', :action => :delete, :id => @idea, :confirm => true
-= link_to 'cancel', :back
+= link_to 'cancel', { :action => :view, :id => @idea }, :class => :btn

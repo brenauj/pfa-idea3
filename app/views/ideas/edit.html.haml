@@ -2,5 +2,6 @@
 = simple_form_for :idea do |f|
   = f.input :name
   = f.input :description
+  = f.collection_radio_buttons :status, [[Idea::OFFICIAL, 'official'] ,[Idea::VALIDATED, 'validated'] ,[Idea::REFUSED, 'refused'] ,[Idea::NONE, 'none']], :first, :last
   = f.button :submit
-  = link_to 'cancel', :back
+  = link_to 'cancel', { :action => :view, :id => @idea }, :class => :btn
