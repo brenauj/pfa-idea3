@@ -6,6 +6,7 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       @user.role = User::User
       if @user.save
+        session[:user] = @user
         redirect_to :action => :view, :id => @user
       end
     else
