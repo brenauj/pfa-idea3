@@ -1,4 +1,5 @@
 %h2= @idea.name
+%i= Idea::Status[@idea.status]
 %p= @idea.description
-= link_to 'Edit', :action => :edit, :id => @idea
-= link_to 'Delete', :action => :delete, :id => @idea
+= link_to 'Edit', { :action => :edit, :id => @idea }, :class => :btn
+= link_to 'Delete', { :action => :delete, :id => @idea }, :class => :btn
