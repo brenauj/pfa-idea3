@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of :email, :with => /^.+\@.+\..+$/
 
+  include Gravtastic
+  gravtastic
+
   def self.authenticate(login, passwd)
     find_by_name(login).try(:authenticate, passwd)
   end
