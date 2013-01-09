@@ -1,4 +1,6 @@
 Idea3::Application.routes.draw do
+  get "home/home"
+
   get "ideas/create"
   match "ideas/:id/view" => 'ideas#view'
   match "ideas/:id/delete" => 'ideas#delete'
@@ -91,5 +93,5 @@ Idea3::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  root :to => "boxes#list"
+  root :to => "home#home"
 end

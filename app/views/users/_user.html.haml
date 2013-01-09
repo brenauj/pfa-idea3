@@ -1,0 +1,10 @@
+- unless user.nil?
+  = link_to :controller => :users, :action => :view, :id => user do
+    - if user.role == User::Administrator
+      %span.user-admin= user.name.to_s + " (Administrator)"
+    - elsif user.role == User::Moderator
+      %span.user-mod= user.name.to_s + " (Moderator)"
+    - else
+      = user.name
+- else
+  Unknown

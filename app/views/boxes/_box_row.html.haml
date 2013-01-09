@@ -1,10 +1,14 @@
-%tr
-  %td
+.box-partial
+  %h3
     = link_to box.name, :controller => :boxes, :action => :view, :id => box
-  - unless box.user.nil?
-    %td= box.user.name
-  - else
-    %td
-      %i no user
-  %td= box.description
-  %td= box.ideas.count
+  .box-description
+    = box.description
+  .box-actions
+    Opened by
+    = render :partial => 'users/user', :object => box.user, :as => :user
+    &#149;
+    = link_to box.ideas.count.to_s + " idea(s)", :controller => :boxes, :action => :view, :id =>box
+    &#149;
+    = link_to "Edit", :controller => :boxes, :action => :edit, :id => box
+    &#149;
+    = link_to "Delete", :controller =>:boxes, :action => :delete, :id => box

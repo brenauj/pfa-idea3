@@ -1,0 +1,24 @@
+.hero-unit
+  %h1
+    Welcome to Idea
+    %sup> 3
+    !
+  %p
+    Idea
+    %sup> 3
+    \ is a web platform to share&nbsp;
+    %strong> imagination
+    \. I allows users to create
+    %big Idea boxes
+    where other users can submit
+    %big Ideas
+    and contribute to your
+    %b Project.
+.row#home-lists
+  .span6
+    %h2 Popular Boxes
+    = render :partial => 'boxes/box_row', :collection => @boxes, :as => :box
+    %h2 Last Boxes
+  .span6
+    %h2 Last Ideas
+    %h2 Popular Ideas
