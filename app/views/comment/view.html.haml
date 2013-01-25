@@ -1,0 +1,4 @@
+%i= "Posted by #{@comment.user.name}"
+%p= @comment.content
+= link_to 'Edit', { :action => :edit, :id => @comment }, :class => :btn
+= link_to 'Delete', { :action => :delete, :id => @comment }, :class => :btn

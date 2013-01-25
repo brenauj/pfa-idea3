@@ -3,3 +3,9 @@
 %p= @idea.description
 = link_to 'Edit', { :action => :edit, :id => @idea }, :class => :btn
 = link_to 'Delete', { :action => :delete, :id => @idea }, :class => :btn
+= link_to 'Comment', { :controller => :comment, :action => :create, :commentable_id => @idea, :commentable_type => "Idea" }
+%h3 Comments
+- unless @idea.comments.empty?
+  %ul= render :partial => 'comment/comment_display', :collection => @idea.comments, :as => :c
+- else
+  %i No comments yet

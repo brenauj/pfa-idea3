@@ -1,0 +1,4 @@
+%h2 Delete an comment
+%p= "You are about to delete your comment, are you sure ?"
+= button_to 'delete', :action => :delete, :id => @comment, :confirm => true
+= link_to 'cancel', { :action => :view, :id => @comment }, :class => :btn

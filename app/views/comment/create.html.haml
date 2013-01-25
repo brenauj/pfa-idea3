@@ -1,0 +1,6 @@
+%h2 Write a comment
+= simple_form_for :comment do |f|
+  = f.input :content
+  = f.input :commentable_id, :as => :hidden, :input_html => { :value => params[:commentable_id] || params[:comment][:commentable_id] }
+  = f.input :commentable_type, :as => :hidden, :input_html => { :value => params[:commentable_type] || params[:comment][:commentable_type] }
+  = f.button :submit

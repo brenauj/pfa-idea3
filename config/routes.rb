@@ -1,4 +1,14 @@
 Idea3::Application.routes.draw do
+
+  get "comment/create"
+  match "comment/:id/view" => 'comment#view'
+  match "comment/:id/edit" => 'comment#edit'
+  match "comment/:id/delete" => 'comment#delete'
+
+  post "comment/create"
+  post "comment/delete"
+  post "comment/edit"
+
   get "ideas/create"
   match "ideas/:id/view" => 'ideas#view'
   match "ideas/:id/delete" => 'ideas#delete'

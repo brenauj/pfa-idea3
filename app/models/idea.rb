@@ -1,6 +1,7 @@
 class Idea < ActiveRecord::Base
   belongs_to :box
   belongs_to :user
+  has_many :comments, :as => :commentable
 
   NONE = 0
   VALIDATED = 1

@@ -1,0 +1,7 @@
+%li
+  %i= c.user.name + " said :"
+  %p= c.content
+  = link_to 'Comment', { :controller => :comment, :action => :create, :commentable_id => c, :commentable_type => "Comment" }
+  %br
+  - unless c.comments.empty?
+    %ul= render :partial => 'comment/comment_display', :collection => c.comments, :as => :c
