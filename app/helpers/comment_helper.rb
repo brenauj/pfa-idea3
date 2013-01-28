@@ -2,7 +2,7 @@ module CommentHelper
 
   def self.getParentSymbol commentable
     if commentable.kind_of?(Comment)
-      :comments
+      :comment
     elsif commentable.kind_of?(Idea)
       :ideas
     elsif commentable.kind_of?(Box)
@@ -12,7 +12,7 @@ module CommentHelper
 
   def self.getHigherParent comment
     comment = comment.commentable while comment.commentable.kind_of?(Comment)
-    comment
+    comment.commentable
   end
 
 end
