@@ -20,8 +20,11 @@ class CommentController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    id = CommentHelper.getHigherParent @comment
+    redirect_to :controller => (CommentHelper.getParentSymbol id), :action => :view, :id => id if @comment.user != session[:user] and session[:user].role == User::User
     if request.post?
       @comment.update_attributes(params[:comment])
+      redirect_to :controller => (CommentHelper.getParentSymbol id), :action => :view, :id => id
     end
   end
 

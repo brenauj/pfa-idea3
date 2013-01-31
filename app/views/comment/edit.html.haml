@@ -1,2 +1,5 @@
-%h1 Comment#edit
-%p Find me in app/views/comment/edit.html.haml
+%h2 Edit your comment
+= simple_form_for :comment do |f|
+  = f.input :content
+  = f.button :submit
+  = link_to 'cancel', :controller => (CommentHelper.getParentSymbol(CommentHelper.getHigherParent @comment)), :action => :view, :id => (CommentHelper.getHigherParent @comment)
