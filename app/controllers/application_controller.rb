@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
 
   def get_user
     unless session[:user].nil?
-      User.find(session[:user])
+      begin
+        User.find(session[:user])
+      rescue
+        session[:user] = nil
+      end
     else
       nil
     end
