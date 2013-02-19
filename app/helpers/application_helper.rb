@@ -1,5 +1,9 @@
 module ApplicationHelper
   def get_user
-    session[:user]
+    unless session[:user].nil?
+      User.find(session[:user])
+    else
+      nil
+    end
   end
 end

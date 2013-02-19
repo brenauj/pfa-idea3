@@ -17,5 +17,25 @@ class ApplicationController < ActionController::Base
   def add_error(what)
     flash[:error] ||= []
     flash[:error] << what
-  end    
+  end
+
+  def get_user
+    unless session[:user].nil?
+      User.find(session[:user])
+    else
+      nil
+    end
+  end
+
+  def get_user_id
+    session[:user]
+  end
+
+  def set_user(user)
+    session[:user] = user.id
+  end
+
+  def clear_user
+    session[:user] = nil
+  end
 end

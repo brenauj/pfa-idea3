@@ -2,8 +2,6 @@ class IdeasController < ApplicationController
   before_filter :require_login, :except => [ :view ]
   before_filter :check_user, :only => [ :delete, :edit ]
 
-  include ApplicationHelper
-
   def check_user
     user = get_user
     if (user.role == User::User) and (user != Idea.find(params[:id]).user)
