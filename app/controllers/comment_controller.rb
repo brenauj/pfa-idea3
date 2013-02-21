@@ -1,7 +1,7 @@
 class CommentController < ApplicationController
   before_filter :require_login, :except => [ :view ]
 
-  def redirector controller=nil,id=nil,action=:view
+  def redirector(controller = nil,id = nil,action = :view)
     id ||= CommentHelper.getHigherParent @comment
     controller ||= (CommentHelper.getParentSymbol id)
     redirect_to :controller => controller, :action => action, :id => id
