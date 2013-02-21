@@ -1,6 +1,7 @@
 Idea3::Application.routes.draw do
 
   get "comment/create"
+  match "comment/:id/moderate" => 'comment#moderate'
   match "comment/:id/view" => 'comment#view'
   match "comment/:id/edit" => 'comment#edit'
   match "comment/:id/delete" => 'comment#delete'
@@ -8,6 +9,8 @@ Idea3::Application.routes.draw do
   post "comment/create"
   post "comment/delete"
   post "comment/edit"
+
+  get "home/home"
 
   get "ideas/create"
   match "ideas/:id/view" => 'ideas#view'
@@ -101,5 +104,5 @@ Idea3::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  root :to => "boxes#list"
+  root :to => "home#home"
 end

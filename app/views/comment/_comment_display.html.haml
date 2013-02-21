@@ -1,13 +1,25 @@
 %blockquote
   %i
-    - if comment.user
-      = comment.user.name + " said :"
-    - else
-      Someone said :
-  %p= comment.content
-  = link_to 'Comment', { :controller => :comment, :action => :create, :commentable_id => comment, :commentable_type => "Comment" }
-  = link_to 'Edit', { :controller => :comment, :action => :edit, :id => comment }
-  - if session[:user] == comment.user or session[:user].role != User::User
-    = link_to 'Delete', { :controller => :comment, :action => :delete, :id => comment }
+    - unless comment.moderated
+      - if comment.user
+        = comment.user.name + " said :"
+      - else
+        Someone said :
+  - unless comment.moderated
+    %p
+      = comment.content
+    = link_to 'Comment', { :controller => :comment, :action => :create, :commentable_id => comment, :commentable_type => "Comment" }
+    = link_to 'Edit', { :controller => :comment, :action => :edit, :id => comment }
+    - if session[:user]
+      - if session[:user] == comment.user or session[:user].role != User::User
+        = link_to 'Delete', { :controller => :comment, :action => :delete, :id => comment }
+      - if session[:user].role != User::User
+        = link_to 'Moderate', { :controller => :comment, :action => :moderate, :id => comment, :moderator_id => session[:user] }
+  - else
+    %b
+      - unless comment.moderator_id.nil?
+        = "Comment moderated by #{User.find(comment.moderator_id).name}"
+      - else
+        Comment moderated by a moderator
   - unless comment.comments.empty?
     = render :partial => 'comment/comment_display', :collection => comment.comments, :as => :comment
