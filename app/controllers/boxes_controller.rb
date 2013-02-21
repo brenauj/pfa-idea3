@@ -1,8 +1,7 @@
 class BoxesController < ApplicationController
 
-include ApplicationHelper
-before_filter :require_login, :except => [:list, :view]
-before_filter :require_permission, :except => [:create, :list, :view]
+  before_filter :require_login, :except => [:list, :view]
+  before_filter :require_permission, :except => [:create, :list, :view]
 
   def create
     if request.post?
@@ -17,7 +16,7 @@ before_filter :require_permission, :except => [:create, :list, :view]
   end
 
   def require_permission
-    user = session[:user]
+    user = get_user
     if user != Box.find(params[:id]).user && user.role != 1 && user.role != 2
       flash[:error] = ["You don't have permission to edit or delete this box"]
       redirect_to :action => :view, :id => Box.find(params[:id])

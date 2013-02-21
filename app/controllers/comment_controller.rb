@@ -12,7 +12,7 @@ class CommentController < ApplicationController
       @comment = Comment.new
     elsif request.post?
       @comment = Comment.new params[:comment]
-      @comment.user = session[:user]
+      @comment.user = get_user
       (redirector) if @comment.save
     end
   end
@@ -32,7 +32,7 @@ class CommentController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     
-    (redirector) if @comment.user != session[:user] and session[:user].role == User::User
+    (redirector) if @comment.user != (get_user) and (get_user).role == User::User
     if request.post?
       @comment.update_attributes(params[:comment])
       redirector

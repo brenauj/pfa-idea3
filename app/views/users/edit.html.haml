@@ -3,4 +3,5 @@
   %p= field.to_s + " " + error
 = simple_form_for :user do |f|
   = f.input :name, :disabled => true
+  = f.input :email
   = f.button :submit

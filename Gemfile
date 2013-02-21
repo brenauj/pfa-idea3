@@ -39,3 +39,4 @@ gem 'unicorn'
 # gem 'debugger'
 
 gem 'simple_form'
+gem 'gravtastic'

@@ -2,8 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables.css.sass"
+
 .user-admin
-  color: red
+  color: $red
 
 .user-mod
-  color: green
+  color: $green
+
+.user-box
+  background-color: #456789
+  border-radius: 5px
+  padding: 10px
+  color: #FFFFFF
+  & h2
+    font-size: 20pt
+    line-height: 64px
+    padding: 0
+    margin: 0
+  & .role
+    font-weight: 600
+    line-height: 32px
+
+.user-pic
+  float: right
+  margin-left: 10px

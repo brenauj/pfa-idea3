@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       @user.role = User::User
       if @user.save
-        session[:user] = @user
+        set_user @user
         redirect_to :action => :view, :id => @user
       end
     else
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if params[:confirm]
-      if @user == session[:user]
-        session[:user] = nil
+      if ( not get_user_id.nil? ) and @user.id == get_user_id
+        clear_user
       end
 
       @user.delete
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
       user = User.authenticate(params[:user][:name], params[:user][:password])
 
       if user
-        session[:user] = user
+        set_user user
         redirect_to :action => :view, :id => user
       else
         add_error "Unable to login"

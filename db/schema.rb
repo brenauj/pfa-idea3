@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125131227) do
+ActiveRecord::Schema.define(:version => 20130221095446) do
 
   create_table "boxes", :force => true do |t|
     t.string   "name"
@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(:version => 20130125131227) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "commentable_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "commentable_type"
+    t.boolean  "moderated",        :default => false
+    t.integer  "moderator_id"
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130125131227) do
     t.integer  "role"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "email"
   end
 
 end
